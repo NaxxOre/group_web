@@ -27,6 +27,7 @@ if(isset($_GET['id'])){
 			<select name="userrole">
 				<option value="0">Author</option>
 				<option <?= $user['is_admin'] ? 'selected' : '' ?> value="1">Admin</option>
+                
 			</select>
             <button type="submit" name="submit" class="btn">Update User</button>
         </form>

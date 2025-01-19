@@ -33,6 +33,15 @@ CREATE TABLE `categories` (
   `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE IF NOT EXISTS seller_requests (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    product_type VARCHAR(255) NOT NULL,
+    reason TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 --
 -- Dumping data for table `categories`
 --
@@ -93,22 +102,22 @@ CREATE TABLE `users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
   `avatar` varchar(255) NOT NULL,
-  `is_admin` tinyint(1) NOT NULL
+  `user_type` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `avatar`, `is_admin`) VALUES
+INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `avatar`, `user_type`) VALUES
 (5, 'Joe', 'Doel', 'Joe', 'john@doe.com', '$2y$10$Sxg.qjlHzi9UpdVvfxlozenXKQPAljvd50tH3i5vmCw5IcjEgUPzq', '1677834448avatar15.jpg', 1),
-(6, 'Jo', 'Doe', 'Joel', 'joemon@gmail.com', '$2y$10$7kbPS82HOavofH5gxGbQIut7uJEk5oqeonly4k7BZFY5ciDaJAVsS', '1677835117avatar7.jpg', 0),
-(7, 'Gogo', 'PowerRangers', 'GogoPoweRangers', 'gogopowerrangers@gmail.com', '$2y$10$1rNxyIx3VXbH1RbGkqFWne6j21ksd1JCJHqD4uZZmsrWYgA1IQ6bq', '1677835680avatar3.jpg', 0),
+(6, 'Jo', 'Doe', 'Joel', 'joemon@gmail.com', '$2y$10$7kbPS82HOavofH5gxGbQIut7uJEk5oqeonly4k7BZFY5ciDaJAVsS', '1677835117avatar7.jpg', 2),
+(7, 'Gogo', 'PowerRangers', 'GogoPoweRangers', 'gogopowerrangers@gmail.com', '$2y$10$1rNxyIx3VXbH1RbGkqFWne6j21ksd1JCJHqD4uZZmsrWYgA1IQ6bq', '1677835680avatar3.jpg', 3),
 (8, 'Ernest', 'Achiever', 'Ernest', 'ernes@gmail.com', '$2y$10$8Uio8tlnKrPzKFbxvBmVueb3Dr7oyuRD0kmqGlvIGZPkuFgAdk79W', '1677835925avatar1.jpg', 1),
 (9, 'Aster', 'Kennedy ', 'asterkennedy', 'asterkennedy@gmail.com', '$2y$10$1VrsN/8gppd5pwurNZwX9.3Fg00LJaFt/kNNB0o1yCSe2ladshMbK', '1678235515avatar9.jpg', 0),
-(10, 'Jane', 'Supper', 'notjane', 'not@jane.com', '$2y$10$pmLtiVTcC38W5ai07O2K6uRucCU59TE9JpUmIQuNloGhqJqzACeJC', '1678236024avatar4.jpg', 0),
-(11, 'Ant', 'Ketchup', 'antketchup@123', 'antketchup@gmail.com', '$2y$10$.g/vZiXYIeq5WZx1Z4OAKO8IlqUSTAkP2rvFsdYyFLHyYeE7biboG', '1678237029avatar8.jpg', 0),
-(12, 'James', 'Moriarty', 'jamesmoriarty@123', 'jamesmoriarty@gmail.com', '$2y$10$PrVXNnS1uODK13PtYY7uUeNK3MRbh37xitF8dzfXB.Gax7cdEi8WG', '1678249230avatar13.jpg', 0);
+(10, 'Jane', 'Supper', 'notjane', 'not@jane.com', '$2y$10$pmLtiVTcC38W5ai07O2K6uRucCU59TE9JpUmIQuNloGhqJqzACeJC', '1678236024avatar4.jpg', 2),
+(11, 'Ant', 'Ketchup', 'antketchup@123', 'antketchup@gmail.com', '$2y$10$.g/vZiXYIeq5WZx1Z4OAKO8IlqUSTAkP2rvFsdYyFLHyYeE7biboG', '1678237029avatar8.jpg', 1),
+(12, 'James', 'Moriarty', 'jamesmoriarty@123', 'jamesmoriarty@gmail.com', '$2y$10$PrVXNnS1uODK13PtYY7uUeNK3MRbh37xitF8dzfXB.Gax7cdEi8WG', '1678249230avatar13.jpg', 1);
 
 --
 -- Indexes for dumped tables

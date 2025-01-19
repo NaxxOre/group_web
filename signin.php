@@ -1,9 +1,16 @@
 <?php
 include 'config/constants.php';
 
+// Start session if not already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Retrieve previous input if set
 $username_email = $_SESSION['signin-data']['username_email'] ?? null;
 $password = $_SESSION['signin-data']['password'] ?? null;
 
+// Clear the signin data session variable after it's used
 unset($_SESSION['signin-data']);
 ?>
 <!DOCTYPE html>
@@ -24,32 +31,22 @@ unset($_SESSION['signin-data']);
 <section class="form__section">
     <div class="container form__section-container">
         <h2>Sign In</h2> 
-        <?php
-        if(isset($_SESSION['signup-success'])): 
-        ?> 
+        <?php if (isset($_SESSION['signup-success'])): ?> 
             <div class="alert__message success">
-            <p>
-                <?= $_SESSION['signup-success'];
-                unset($_SESSION['signup-success']);
-                ?>
-            </p>
+                <p><?= $_SESSION['signup-success']; unset($_SESSION['signup-success']); ?></p>
             </div>
-        <?php elseif(isset($_SESSION['signin'])): ?>
+        <?php elseif (isset($_SESSION['signin'])): ?>
             <div class="alert__message error">
-                <p>
-                    <?=$_SESSION['signin'];
-                    unset($_SESSION['signin']); 
-                    ?>
-                </p>
+                <p><?= $_SESSION['signin']; unset($_SESSION['signin']); ?></p>
             </div>
         <?php endif; ?>
         <form action="<?= ROOT_URL ?>signin-logic.php" method="POST">
-            <input type="text" name="username_email" value='<?= $username_email ?>' placeholder="Username or Email">
-            <input type="password" name="password" value='<?= $password ?>' placeholder=" Password">
+            <input type="text" name="username_email" value='<?= $username_email ?>' placeholder="Username or Email" required>
+            <input type="password" name="password" value='<?= $password ?>' placeholder="Password" required>
             <button type="submit" class="btn" name="submit">Sign in</button>
             <small>Don't have an account? <a href="signup.php">Sign up</a></small>
         </form>
     </div>
 </section>
 </body>
-</html>
+</html> 
